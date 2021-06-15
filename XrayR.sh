@@ -120,7 +120,18 @@ update() {
 }
 
 config() {
-   vi /etc/XrayR/config.yml
+  # vi /etc/XrayR/config.yml
+    echo "请输入网址:(http://或者https://)"
+    read web
+    sed -i "s#http://127.0.0.1:667#$web#g" /etc/XrayR/config.yml
+    echo "请输入apikey:"
+    read apikey
+    sed -i "s#123#$apikey#g" /etc/XrayR/config.yml
+    echo "请输入节点ID:"
+    read nodeid
+    sed -i "s#41#$nodeid#g" /etc/XrayR/config.yml
+    echo "注意：第一次配置后需要手动重启一次,后续会自动加载配置。";
+
    echo "是否现在重启xrayr？[Y/n]" && echo
         read -e -p "(默认: y):" yn
         [[ -z ${yn} ]] && yn="y"
@@ -377,7 +388,7 @@ show_menu() {
     echo -e "
   ${green}XrayR 后端管理脚本，${plain}${red}不适用于docker${plain}
 --- https://github.com/XrayR-project/XrayR ---
-  ${green}0.${plain} 修改配置
+  ${green}0.${plain} 修改配置(仅适用于SSpanel)
 ————————————————
   ${green}1.${plain} 安装 XrayR
   ${green}2.${plain} 更新 XrayR
