@@ -1,5 +1,6 @@
 
 #一键脚本内新增强制关闭aead选项：
+
 `sed -i '/RestartSec=10/a\Environment="XRAY_VMESS_AEAD_FORCED=false"' /etc/systemd/system/XrayR.service`
 
 
