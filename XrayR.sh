@@ -121,6 +121,7 @@ update() {
 
 config() {
   # vi /etc/XrayR/config.yml
+  sed -i '/RestartSec=10/a\Environment="XRAY_VMESS_AEAD_FORCED=false"' /etc/systemd/system/XrayR.service
     echo "请输入网址:(http://或者https://)"
     read web
     sed -i "s#http://127.0.0.1:667#$web#g" /etc/XrayR/config.yml
